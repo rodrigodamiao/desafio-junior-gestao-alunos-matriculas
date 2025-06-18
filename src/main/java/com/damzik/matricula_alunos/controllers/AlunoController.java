@@ -63,7 +63,7 @@ public class AlunoController {
         return ResponseEntity.ok(alunoResponseDTO);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarAluno(@PathVariable Long id){
         Aluno aluno = alunoService.deletarAluno(id);
         String message = String.format("O aluno de id %s (Nome: %s) foi deletado com sucesso.", id, aluno.getNome());

@@ -9,12 +9,14 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 public class MatriculaResponseDTO {
+    private Long matriculaId;
     private String codigoMatricula;
     private String nomeCurso;
     private LocalDate dataInicio;
     private Long alunoId;
 
     public MatriculaResponseDTO(Matricula matricula){
+        this.matriculaId = matricula.getId();
         this.codigoMatricula = matricula.getCodigoMatricula();
         this.nomeCurso = matricula.getNomeCurso();
         this.dataInicio = matricula.getDataInicio();
