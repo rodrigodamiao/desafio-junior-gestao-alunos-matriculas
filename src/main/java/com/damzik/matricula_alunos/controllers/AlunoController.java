@@ -4,6 +4,7 @@ import com.damzik.matricula_alunos.dtos.requests.AlunoRequestDTO;
 import com.damzik.matricula_alunos.dtos.responses.AlunoResponseDTO;
 import com.damzik.matricula_alunos.entities.Aluno;
 import com.damzik.matricula_alunos.services.AlunoService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,7 @@ public class AlunoController {
     }
 
     @PostMapping
-    public ResponseEntity<AlunoResponseDTO> criarAluno(@RequestBody AlunoRequestDTO alunoRequestDTO){
+    public ResponseEntity<AlunoResponseDTO> criarAluno(@RequestBody @Valid AlunoRequestDTO alunoRequestDTO){
         Aluno aluno = alunoService.criarAluno(alunoRequestDTO);
         AlunoResponseDTO alunoResponseDTO = new AlunoResponseDTO(aluno);
 
@@ -55,7 +56,7 @@ public class AlunoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AlunoResponseDTO> atualizarAluno(@PathVariable Long id, @RequestBody AlunoRequestDTO alunoRequestDTO){
+    public ResponseEntity<AlunoResponseDTO> atualizarAluno(@PathVariable Long id, @RequestBody @Valid AlunoRequestDTO alunoRequestDTO){
         Aluno aluno = alunoService.atualizarAluno(id, alunoRequestDTO);
         AlunoResponseDTO alunoResponseDTO = new AlunoResponseDTO(aluno);
 

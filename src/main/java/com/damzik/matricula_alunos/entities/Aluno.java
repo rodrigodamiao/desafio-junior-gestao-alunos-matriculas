@@ -1,6 +1,7 @@
 package com.damzik.matricula_alunos.entities;
 
 import com.damzik.matricula_alunos.dtos.requests.AlunoRequestDTO;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,7 +33,7 @@ public class Aluno {
     private LocalDateTime dataInclusao;
     private LocalDateTime dataAtualizacao;
 
-    @OneToMany
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Matricula> matriculas = new ArrayList<>();
 
     public Aluno(AlunoRequestDTO alunoRequestDTO) {

@@ -4,6 +4,7 @@ import com.damzik.matricula_alunos.dtos.requests.MatriculaRequestDTO;
 import com.damzik.matricula_alunos.dtos.responses.MatriculaResponseDTO;
 import com.damzik.matricula_alunos.entities.Matricula;
 import com.damzik.matricula_alunos.services.MatriculaService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +48,7 @@ public class MatriculaController {
     }
 
     @PostMapping
-    public ResponseEntity<MatriculaResponseDTO> criarMatricula(@RequestBody MatriculaRequestDTO matriculaRequestDTO){
+    public ResponseEntity<MatriculaResponseDTO> criarMatricula(@RequestBody @Valid MatriculaRequestDTO matriculaRequestDTO){
         Matricula matricula = matriculaService.criarMatricula(matriculaRequestDTO);
         MatriculaResponseDTO matriculaResponseDTO = new MatriculaResponseDTO(matricula);
 
@@ -55,7 +56,7 @@ public class MatriculaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MatriculaResponseDTO> atualizarMatricula(@PathVariable Long id, @RequestBody MatriculaRequestDTO matriculaRequestDTO){
+    public ResponseEntity<MatriculaResponseDTO> atualizarMatricula(@PathVariable Long id, @RequestBody @Valid MatriculaRequestDTO matriculaRequestDTO){
         Matricula matricula = matriculaService.atualizarMatricula(id, matriculaRequestDTO);
         MatriculaResponseDTO matriculaResponseDTO = new MatriculaResponseDTO(matricula);
 
